@@ -33,8 +33,8 @@ namespace Homework
 
         static int D20()
         {
-            Random rnd = new Random();
-            return Random.Next(1,21);
+            System.Random rnd = new System.Random();
+            return rnd.Next(1,21);
            
         }       
 
