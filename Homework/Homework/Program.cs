@@ -8,6 +8,8 @@ namespace Homework
         {
             /*1 - Git commit test task*/
             Console.WriteLine(Max_function(10, 5, 3));
+            /*2 - Git commit test task*/
+            Console.WriteLine(InRange(10, 5, 3));
 
         }
         static int Max_function (int a, int b, int c)
@@ -33,6 +35,20 @@ namespace Homework
                 largest_num = c;
             }
             return largest_num;
+        }
+
+        static bool InRange (int test_number, int min_val, int max_val)
+        {
+            bool result;
+            if (test_number >= min_val && test_number <= max_val)
+            {
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
+            return result;
         }
     }
 }
