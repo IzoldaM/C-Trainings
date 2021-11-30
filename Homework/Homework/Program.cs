@@ -8,6 +8,8 @@ namespace Homework
         {
             /* 3 - new branch task*/
             Console.WriteLine(IsPrimal(3));
+            /* 4 - new branch task*/
+            Console.WriteLine(D20());
         }
         static bool IsPrimal(int number)
         {
@@ -28,7 +30,13 @@ namespace Homework
                 return true;
             }
         }
-       
+
+        static int D20()
+        {
+            Random rnd = new Random();
+            return Random.Next(1,21);
+           
+        }       
 
     }   
 }
