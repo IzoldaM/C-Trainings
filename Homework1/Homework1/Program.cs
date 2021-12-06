@@ -13,6 +13,8 @@ namespace Homework1
              3. Convert number to Lithuanian text
             */
 
+
+            /*Number in range between -19 and 19*/
             Console.WriteLine("Please enter a number between -19 and 19");
             string UserInput = Console.ReadLine();
             
@@ -26,7 +28,22 @@ namespace Homework1
             {
                 Console.WriteLine("Your entered input is invalid");
             }
-            
+
+            /*Number in range between -99 and 99*/
+            Console.WriteLine("Please enter a number between -99 and 99");
+            string UserInput2 = Console.ReadLine();
+
+            if (IsNumeric(UserInput2) == true)
+            {
+
+                Console.WriteLine(ChangeNumberToText99(Convert.ToInt32(UserInput2)));
+
+            }
+            else
+            {
+                Console.WriteLine("Your entered input is invalid");
+            }
+
         }
 
         /*IsNumeric function checks if string input is a number.
@@ -35,13 +52,13 @@ namespace Homework1
         {
             
             int counter = 0;
-            if (InputString[0] == '-' || Regex.IsMatch(Char.ToString(InputString[0]), @"\d") == true)
+            if ((InputString[0] == '-' && InputString[1]!='0') || (InputString[0] == '0' && InputString.Length == 1) || Regex.IsMatch(Char.ToString(InputString[0]), @"[1-9]") == true)
             {
                 counter++;
             }
             for (int i = 1; i < InputString.Length; i++)
             {
-                if (Regex.IsMatch(Char.ToString(InputString[i]), @"[1-9]") == true)
+                if (Regex.IsMatch(Char.ToString(InputString[i]), @"\d") == true)
                 {
                     counter++;
                 }
@@ -106,6 +123,23 @@ namespace Homework1
             }
         }
 
+
+        static string ConvertTensToString(int t)
+        {
+            switch (t/10)
+            {
+                case 2: return "dvidesimt"; break;
+                case 3: return "trisdesimt"; break;
+                case 4: 
+                case 5: 
+                case 6: 
+                case 7: 
+                case 8:
+                case 9: return ConvertDigitToString(t/10) + "asdesimt"; break;
+                default: return ""; break;
+            }
+        }
+
         /*Function converts number (in range between -19 and 19) to Lithunian text*/
         static string ChangeNumberToText(int Number)
         {
@@ -133,6 +167,53 @@ namespace Homework1
                 else
                 {
                     return ConvertTeensToString(Number);
+                }
+            }
+        }
+
+        static string ChangeNumberToText99(int Number)
+        {
+            if (IsInRange(Number, -99, 99) == false)
+            {
+                return "Number is out of range";
+            }
+            else if (Number < 0)
+            {
+                if (Number * -1 < 10)
+                {
+                    return "minus " + ConvertDigitToString(Number * -1);
+                }
+                else if (Number*-1 < 20)
+                {
+                    return "minus " + ConvertTeensToString(Number * -1);
+                }
+                else if (Number*-1 % 10 == 0)
+                {
+                    return "minus " + ConvertTensToString(Number * -1);
+                }
+                else
+                {
+                    int HelpNumber = Number * -1;
+                    return "minus " + ConvertTensToString(HelpNumber) +" "+ ConvertDigitToString(HelpNumber - (HelpNumber/10)*10);
+                }
+            }
+            else
+            {
+                if (Number < 10)
+                {
+                    return ConvertDigitToString(Number);
+                }
+                else if (Number < 20)
+                {
+                    return  ConvertTeensToString(Number);
+                }
+                else if (Number % 10 == 0)
+                {
+                    return ConvertTensToString(Number);
+                }
+                else
+                {
+                    return ConvertTensToString(Number) + " " + ConvertDigitToString(Number - (Number / 10) * 10);
                 }
             }
         }
