@@ -7,6 +7,12 @@ namespace Homework1
     {
         static void Main()
         {
+            /*First Homework Task:
+             1. Check if user entered string is a number
+             2. Check if number is in range
+             3. Convert number to Lithuanian text
+            */
+
             Console.WriteLine("Please enter a number between -19 and 19");
             string UserInput = Console.ReadLine();
             
